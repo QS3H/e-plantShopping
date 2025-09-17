@@ -2,7 +2,11 @@
 
 Welcome to Paradise Nursery, where green meets serenity! This is a modern e-commerce application built with React and Redux, designed to provide a seamless shopping experience for plant enthusiasts.
 
-## 🌿 Features
+## � Live Demo
+
+Experience the application live: [Paradise Nursery](https://qs3h.github.io/e-plantShopping/)
+
+## �🌿 Features
 
 - **Categorized Plant Sections:**
 
