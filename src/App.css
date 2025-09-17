@@ -1,16 +1,39 @@
-/* LandingPage.css */
+/* Base styles and CSS reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow: hidden;
 }
 
-.landing-page {
+:root {
+  --primary-color: #4caf50;
+  --primary-dark: #45a049;
+  --text-light: #ffffff;
+  --text-dark: #333333;
+  --spacing-unit: 1rem;
+  --transition-speed: 0.3s;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* App Container */
+.app-container {
   position: relative;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
+}
+
+/* Landing Page */
+.landing-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
   background-color: #f8f8f8;
+  transition: opacity var(--transition-speed) ease;
 }
 
 .background-image {
@@ -19,129 +42,151 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('https://cdn.pixabay.com/photo/2017/07/13/08/59/greenhouse-2499758_1280.jpg');
-  background-size: 100% 100%;
+  background-image: url("https://cdn.pixabay.com/photo/2017/07/13/08/59/greenhouse-2499758_1280.jpg");
+  background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   filter: brightness(0.8);
 }
+
 .content {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  width: 100vw;
- top: 100px;
+  min-height: 100vh;
+  padding: var(--spacing-unit);
   backdrop-filter: blur(4px);
-  background-color: rgba(0,0,0,0.5);
-  gap: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  gap: 2rem;
 }
 
 .landing_content {
- margin-top: 430px;
-  margin-left: 100px;
-  transform: translate(-50%, -50%);
-  z-index: 1;
+  max-width: 600px;
+  padding: 2rem;
   text-align: center;
-  /* background-color: red; */
-  width: 400px;
-  height: 400px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  gap: 10px;
+  animation: fadeIn 1s ease-in;
 }
 
-.content p,
-.content h1 {
-  color: white;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.content h1 {
-  font-size: 48px;
-  margin-bottom: 10px;
+.landing_content h1 {
+  color: var(--text-light);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.content p {
-  font-size: 25px;
+.landing_content p {
+  color: var(--text-light);
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  margin-bottom: 2rem;
 }
 
 .divider {
-  width: 50px;
-  height: 2px;
-  background-color: #4caf50;
-  margin: 10px 0;
+  width: 60px;
+  height: 3px;
+  background-color: var(--primary-color);
+  margin: 1.5rem auto;
 }
 
 .get-started-button {
-  padding: 15px 25px;
-  font-size: 23px;
+  padding: 1rem 2rem;
+  font-size: clamp(1rem, 2vw, 1.4rem);
   border: none;
-  border-radius: 5px;
-  background-color: #4caf50;
-  color: white;
+  border-radius: 8px;
+  background-color: var(--primary-color);
+  color: var(--text-light);
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 40px;
+  transition: all var(--transition-speed) ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .get-started-button:hover {
-  background-color: #45a049;
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* ProductList.css */
+.get-started-button:active {
+  transform: translateY(0);
+}
 
+/* Product List Container */
 .product-list-container {
-  position: absolute;
-  overflow-x: hidden;
+  position: fixed;
   top: 100vh;
-  /* Initially off-screen */
   left: 0;
   width: 100%;
   height: 100vh;
-  background-color: rgba(255, 255, 255, 0.9);
-  /* Adjust background opacity as needed */
-  transition: top 0.5s ease;
-  /* Smooth transition for top property */
+  background-color: var(--text-light);
+  transition: top var(--transition-speed) ease;
   overflow-y: auto;
-  /* Enable vertical scrolling */
-  z-index: 2;
-  /* Ensure it's above landing page content */
-  backdrop-filter: blur(5px);
+  z-index: 100;
 }
 
 .product-list-container.visible {
   top: 0;
 }
-/* LandingPage.css */
-@media screen and (max-width: 768px) {
+
+/* Fade out animation */
+.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1200px) {
+  .content {
+    padding: var(--spacing-unit);
+  }
+}
+
+@media screen and (max-width: 992px) {
   .content {
     flex-direction: column;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
+    justify-content: center;
+    gap: 3rem;
+    padding: 2rem;
   }
 
   .landing_content {
-    margin-top: 100px; /* Adjust as needed */
-    margin-left: 0;
-    width: 80%; /* Adjust as needed */
-    text-align: center;
+    margin: 0;
+    padding: 1rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .landing_content {
+    width: 100%;
+    max-width: 100%;
   }
 
-  .aboutus_container {
-    margin-top: 20px; /* Adjust as needed */
-    width: 80%; /* Adjust as needed */
+  .get-started-button {
+    width: 100%;
+    max-width: 300px;
   }
 }
 
 @media screen and (max-width: 480px) {
-  .landing_content {
-    margin-top: 50px; /* Adjust as needed */
-    width: 90%; /* Adjust as needed */
+  .content {
+    padding: 1rem;
   }
 
-  .aboutus_container {
-    width: 90%; /* Adjust as needed */
+  .landing_content h1 {
+    font-size: 2rem;
+  }
+
+  .landing_content p {
+    font-size: 1.1rem;
   }
 }
