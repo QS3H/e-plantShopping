@@ -94,8 +94,20 @@ const CartItem = ({ onContinueShopping }) => {
         <button className="get-started-button" onClick={handleContinueShopping}>
           Continue Shopping
         </button>
-        <br />
-        <button className="get-started-button1">Checkout</button>
+        <a
+          href="https://github.com/QS3H"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ textDecoration: "none" }}
+        >
+          <button className="get-started-button1">
+            Visit Developer&apos;s GitHub
+          </button>
+        </a>
+        <div className="note-text">
+          Note: This is a practice project showcasing React & Redux skills, not
+          a full e-commerce application.
+        </div>
       </div>
     </div>
   );
