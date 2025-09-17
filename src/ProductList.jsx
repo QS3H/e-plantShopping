@@ -1,19 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./ProductList.css";
 import CartItem from "./CartItem";
+import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "./CartSlice";
 function ProductList({ onHomeClick }) {
   const [showCart, setShowCart] = useState(false);
-  const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
+
   const [addedToCart, setAddedToCart] = useState([]);
 
-  const handleAddToCart = (product) => {
-    dispatch(addItem(product));
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart.items);
 
-    setAddedToCart((prevState) => ({
-      ...prevState,
-      [product.name]: true,
-    }));
+  const handleAddToCart = (product) => {
+    try {
+      const productWithNumericCost = {
+        ...product,
+        cost: parseFloat(product.cost.replace("$", "")),
+      };
+      dispatch(addItem(productWithNumericCost));
+
+      setAddedToCart((prevState) => ({
+        ...prevState,
+        [product.name]: true,
+      }));
+    } catch (error) {
+      // Handle error silently or show user feedback if needed
+    }
   };
 
   const plantsArray = [
@@ -290,12 +302,10 @@ function ProductList({ onHomeClick }) {
   };
   const handlePlantsClick = (e) => {
     e.preventDefault();
-    setShowPlants(true); // Set showAboutUs to true when "About Us" link is clicked
-    setShowCart(false); // Hide the cart when navigating to About Us
+    setShowCart(false); // Just hide the cart and show products
   };
 
-  const handleContinueShopping = (e) => {
-    e.preventDefault();
+  const handleContinueShopping = () => {
     setShowCart(false);
   };
   return (
@@ -340,12 +350,20 @@ function ProductList({ onHomeClick }) {
                     d="M42.3,72H221.7l-26.4,92.4A15.9,15.9,0,0,1,179.9,176H84.1a15.9,15.9,0,0,1-15.4-11.6L32.5,37.8A8,8,0,0,0,24.8,32H8"
                     fill="none"
                     stroke="#faf9f9"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     id="mainIconPathAttribute"
                   ></path>
                 </svg>
+                {cartItems.length > 0 && (
+                  <span className="cart-badge">
+                    {cartItems.reduce(
+                      (total, item) => total + item.quantity,
+                      0
+                    )}
+                  </span>
+                )}
               </h1>
             </a>
           </div>
