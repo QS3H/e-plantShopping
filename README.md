@@ -2,6 +2,12 @@
 
 Welcome to Paradise Nursery, where green meets serenity! This is a modern e-commerce application built with React and Redux, designed to provide a seamless shopping experience for plant enthusiasts.
 
+> **Note**: This is a practice project developed to demonstrate React and Redux skills. While it includes a full shopping cart implementation and responsive design, it is not intended for actual e-commerce transactions.
+
+## 🌐 Live Demoadise Nursery - Plant Shopping Application
+
+Welcome to Paradise Nursery, where green meets serenity! This is a modern e-commerce application built with React and Redux, designed to provide a seamless shopping experience for plant enthusiasts.
+
 ## � Live Demo
 
 Experience the application live: [Paradise Nursery](https://qs3h.github.io/e-plantShopping/)
@@ -137,7 +143,7 @@ e-plantShopping/
 
 ## ⚖️ License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the Apache License - see the [LICENSE](LICENSE) file for details.
 
 ## 🌟 Acknowledgments
 
